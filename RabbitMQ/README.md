@@ -91,3 +91,6 @@ RabbitMQ supports several types of exchanges, each serving different routing nee
 	```
 
 <img src="https://github.com/user-attachments/assets/62b84cda-3f61-402d-a135-2a53b4a39bc5">
+
+
+
