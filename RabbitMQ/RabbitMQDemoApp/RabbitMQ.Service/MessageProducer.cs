@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Service.Interfaces;
@@ -26,7 +26,7 @@ public class MessageProducer(IOptions<RabbitMQConfiguration> options) : IMessage
         }
 
 
-        await _channel.ExchangeDeclareAsync(exchange: exchangeConfiguration.Name, type: ExchangeType.Fanout);
+        await _channel.ExchangeDeclareAsync(exchange: exchangeConfiguration.Name, type: exchangeConfiguration.Type);
 
         var serializedMessage = JsonConvert.SerializeObject(messageConfiguration.Message);
         var body = Encoding.UTF8.GetBytes(serializedMessage);
