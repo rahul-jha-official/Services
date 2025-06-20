@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Service.Interfaces;
 using RabbitMQ.Service.Models;
 using System.Text;
-using System.Threading.Channels;
 
 namespace RabbitMQ.Service;
 
@@ -26,7 +25,7 @@ public class MessageReceiver(IOptions<RabbitMQConfiguration> options) : IMessage
             throw new InvalidOperationException("RabbitMQ connection or channel is not initialized.");
         }
 
-        await _channel.ExchangeDeclareAsync(exchange: exchangeConfiguration.Name, type: ExchangeType.Fanout);
+        await _channel.ExchangeDeclareAsync(exchange: exchangeConfiguration.Name, type: exchangeConfiguration.Type);
 
         await _channel.QueueDeclareAsync(queue: queueConfiguration.QueueName,
                                         durable: queueConfiguration.Durable,
